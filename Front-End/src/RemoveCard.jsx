@@ -16,6 +16,11 @@ function RemoveCard(props) {
     props.setRemove(!props.remove)
   }
 
+  const rCard = useRef(null);
+  useEffect(() => {
+    rCard.current.scrollIntoView({ behavior: "smooth" });
+  }, [Card]);
+
   return (
     <Card id="dataCard" style={{ display: 'inline-block'}}>
       <Card.Text className='bookText' style={{color: 'white'}}></Card.Text>
@@ -28,6 +33,7 @@ function RemoveCard(props) {
         onClick={()=> submitResponse()}
         ><span>SUBMIT</span></div>
       </Card.Body>
+      <div ref={rCard}/>
     </Card>
   );
 }

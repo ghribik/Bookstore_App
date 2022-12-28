@@ -45,6 +45,11 @@ function UpdateCard(props) {
     props.setUpdate(!props.update)
   }
 
+  const uCard = useRef(null);
+  useEffect(() => {
+    uCard.current.scrollIntoView({ behavior: "smooth" });
+  }, [Card]);
+
   return (
     <Card id="dataCard" style={{ display: 'inline-block'}}>
       <Card.Text className='bookText' style={{color: 'white'}}></Card.Text>
@@ -62,6 +67,7 @@ function UpdateCard(props) {
         onClick={()=> submitResponse()}
         ><span>SUBMIT</span></div>
       </Card.Body>
+      <div ref={uCard}/>
     </Card>
   );
 }

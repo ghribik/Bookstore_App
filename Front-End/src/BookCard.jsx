@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 import Card from "react-bootstrap/Card";
 
 function BookCard(props) {
-  const dummy = useRef(null);
+  const bCard = useRef(null);
   useEffect(() => {
-    dummy.current.scrollIntoView({ behavior: "smooth" });
+    bCard.current.scrollIntoView({ behavior: "smooth" });
   }, [Card]);
 
   return (
@@ -24,7 +24,7 @@ function BookCard(props) {
         </div>
         <Card.Text className="bookText">{props.price}</Card.Text>
       </Card.Body>
-      <div ref={dummy} />
+      <div ref={bCard} />
     </Card>
   );
 }

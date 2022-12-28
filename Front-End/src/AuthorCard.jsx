@@ -15,6 +15,11 @@ function AuthorCard(props) {
     props.setAuthor(!props.author);
   }
 
+  const aCard = useRef(null);
+  useEffect(() => {
+    aCard.current.scrollIntoView({ behavior: "smooth" });
+  }, [Card]);
+
   return (
     <Card id="dataCard" style={{ display: "inline-block" }}>
       <Card.Text className="bookText" style={{ color: "white" }}></Card.Text>
@@ -38,6 +43,7 @@ function AuthorCard(props) {
           <span>SUBMIT</span>
         </div>
       </Card.Body>
+      <div ref={aCard}/>
     </Card>
   );
 }
