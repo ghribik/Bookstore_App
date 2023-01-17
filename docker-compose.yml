@@ -1,0 +1,77 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment: 
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: root
+    ports:
+     - "5432:5432"
+    volumes:
+      # copy the sql script to create tables
+      - ./data/database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
+      - ./postgres-data:/var/lib/postgresql/data
+
+  # PostgreSQL pgAdmin panel accessible at http://localhost:16543/
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "g.hribik@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
+  
+  api:
+    build: Back-End/
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: "production"
+      PORT: 5000
+      CONNECTION_STRING:  postgres://root:root@postgres:5432/root
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+
+  mongodb:
+    image: mongo
+    volumes:
+      - ./data:/data
+      - mongodb-data:/var/lib/mongodb/data
+  import:
+    image: mongo
+    command: mongoimport --host bookstore_app_mongodb_1 --type csv -c books --headerline --drop -d mongodb --file ./data/database-seed.csv
+    volumes:
+      - ./data:/data
+
+  api2:
+    build: ./Mongoose
+    restart: always
+    ports:
+      - "5001:5001"
+    environment:
+      - CONNECTION_STRING=mongodb://mongodb:27017/mongodb
+      - NODE_ENV=production                     
+    depends_on:
+      - mongodb
+
+  ui:
+    build: Front-End/
+    depends_on:
+      - api
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+
+volumes:
+  postgres-data:
+  mongodb-data:

@@ -1,0 +1,33 @@
+### TEST API SERVER ###
+GET http://localhost:5001/api/test
+
+### GET ALL ###
+GET http://localhost:5001/api/books
+
+### GET ONE ###
+GET http://localhost:5001/api/books/1234
+
+### GET ONE by author###
+GET http://localhost:5001/api/author/H.P. Lovecraft
+
+### POST ONE ###
+POST http://localhost:5001/api/books
+Content-Type: application/json
+
+{
+    "review": "test"
+}
+
+### DELETE ONE ###
+DELETE http://localhost:5001/api/books/1234
+
+### UPDATE ONE ###
+PATCH http://localhost:5001/api/books/1234
+Content-Type: application/json
+
+{
+    "review": "updated test"
+}
+
+### command to import csv:
+//docker exec -i mongodb mongoimport --type csv -c reviews -f review -d mongodb < ../seed_reviews.csv
