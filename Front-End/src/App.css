@@ -2,18 +2,18 @@ body {
   background-color: black;
 }
 
+h1 {
+  font-size: xxx-large;
+}
+
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
   background-color: black;
-  border-color: olive;
-  border-width: 30px;
   max-width: 1125px;
   height: auto;
   margin: auto;
-  padding: 2%;
-  border-style: solid;
   overflow: hidden;
 }
 
@@ -36,6 +36,7 @@ body {
   border-width: 10px;
   border-style: outset;
   margin: 0.5em;
+  padding-top: 2%;
 }
 
 .btn {
@@ -75,7 +76,7 @@ body {
 #bannerImg {
   max-width: 100%;
   height: auto;
-  margin: 0.25em;
+  margin-top: 0.5em;
 }
 
 .card-img-top {
@@ -129,6 +130,10 @@ body {
   font-weight: bold;
   transition: all 0.5s;
   position: relative;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-three::before {
