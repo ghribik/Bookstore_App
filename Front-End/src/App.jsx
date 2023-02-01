@@ -73,7 +73,8 @@ function App() {
   };
 
   //let API_URL = "https://book-store-api.onrender.com";
-  let API_URL = "http://localhost:5000";
+  //let API_URL = "http://localhost:5000";
+  let API_URL = "http://35.90.14.203:5000/"
 
   useEffect(() => {
     if (readIsMounted.current && readDisplay) {

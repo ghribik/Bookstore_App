@@ -47,7 +47,7 @@ services:
       - mongodb-data:/var/lib/mongodb/data
   import:
     image: mongo
-    command: mongoimport --host bookstore_app_mongodb_1 --type csv -c books --headerline --drop -d mongodb --file ./data/database-seed.csv
+    command: mongoimport --host bookstore_app-mongodb-1 --type csv -c books --headerline --drop -d mongodb --file ./data/database-seed.csv
     volumes:
       - ./data:/data
 
