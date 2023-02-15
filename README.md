@@ -29,7 +29,8 @@
 - Fork / clone down this repo
 - Run "docker-compose up --build" and navigate to the front-end in your browser: http://localhost:5173
 
-- Also up on AWS: [Treat Yo' Shelf](http://35.90.14.203:5173/)
+## Cloud hosted on AWS EC2 Instance
+- Public address: [Treat Yo' Shelf](http://35.90.14.203:5173/)
 
 ## API Reference
 
